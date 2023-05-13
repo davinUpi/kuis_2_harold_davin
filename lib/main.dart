@@ -13,11 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Kuis2 Provis Davin_Harold",
-        home: BlocProvider<ModelJenisPinjaman>(
-          create: (_) => ModelJenisPinjaman(),
-          child: const MainPage(),
-        ));
+      title: "Kuis2 Provis Davin_Harold",
+      home: BlocProvider<ModelJenisPinjaman>(
+        create: (_) => ModelJenisPinjaman(),
+        child: const MainPage(),
+      ),
+    );
   }
 }
 
@@ -26,7 +27,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(Object context) {
-    var temp = context;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -61,9 +61,18 @@ class MainPage extends StatelessWidget {
                       Expanded(
                           child: ListView.builder(
                               itemCount: instanceModelA.length,
-                              itemBuilder: (context, index) {
+                              itemBuilder: (A, index) {
                                 return Card(
                                     child: ListTile(
+                                        onTap: () {
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                            return DetailPage(
+                                                idPinjam:
+                                                    instanceModelA[index].id);
+                                          }));
+                                        },
                                         leading: Image.network(
                                             'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
                                         trailing: const Icon(Icons.more_vert),
